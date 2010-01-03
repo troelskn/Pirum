@@ -260,14 +260,14 @@ class Pirum_Builder
         $entries .= <<<EOF
   <entry>
     <title>{$package['name']} {$release['version']} ({$release['stability']})</title>
-    <link href="{$this->server->url}/get/{$package['name']}-{$release['version']}.tgz" />
+    <link href="{$this->server->url}get/{$package['name']}-{$release['version']}.tgz" />
     <id>{$package['name']}-{$release['version']}</id>
     <author>
       <name>{$maintainer['nickname']}</name>
     </author>
     <updated>$date</updated>
     <content>
-      {$package['description']}
+      {htmlspecialchars($package['description'])}
     </content>
   </entry>
 EOF;
@@ -335,7 +335,7 @@ EOF
       $releases = array();
       foreach ($package['releases'] as $release)
       {
-        $releases[] = "<a href=\"{$this->server->url}/get/{$package['name']}-{$release['version']}.tgz\">{$release['version']}</a> ({$release['stability']})";
+        $releases[] = "<a href=\"{$this->server->url}get/{$package['name']}-{$release['version']}.tgz\">{$release['version']}</a> ({$release['stability']})";
       }
       $releases = implode(', ', $releases);
 
@@ -361,8 +361,8 @@ EOF;
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>{$this->server->summary}</title>
-  <link rel="stylesheet" type="text/css" href="{$this->server->url}/pirum.css" />
-  <link rel="alternate" type="application/rss+xml" href="{$this->server->url}/feed.xml" title="{$this->server->summary} Latest Releases" />
+  <link rel="stylesheet" type="text/css" href="{$this->server->url}pirum.css" />
+  <link rel="alternate" type="application/rss+xml" href="{$this->server->url}feed.xml" title="{$this->server->summary} Latest Releases" />
 </head>
 <body>
   <div id="doc" class="yui-t7">
@@ -382,8 +382,8 @@ EOF;
         <em>Installing</em> a specific version/stability:
         <pre><code>pear install {$this->server->alias}/package_name-1.0.0
 pear install {$this->server->alias}/package_name-beta</code></pre>
-        <em>Receiving</em> updates via a <a href="{$this->server->url}/feed.xml">feed</a>:
-        <pre><code>{$this->server->url}/feed.xml</code></pre>
+        <em>Receiving</em> updates via a <a href="{$this->server->url}feed.xml">feed</a>:
+        <pre><code>{$this->server->url}feed.xml</code></pre>
 
         <h2>Packages</h2>
         $packages
@@ -519,7 +519,7 @@ EOF
   <da>{$release['date']}</da>
   <n>{$release['notes']}</n>
   <f>{$release['filesize']}</f>
-  <g>{$this->server->url}/get/{$package['name']}-{$release['version']}</g>
+  <g>{$this->server->url}get/{$package['name']}-{$release['version']}</g>
   <x xlink:href="package.{$release['version']}.xml"/>
 </r>
 EOF
@@ -541,7 +541,7 @@ EOF
   <da>{$release['date']}</da>
   <n>{$release['notes']}</n>
   <f>{$release['filesize']}</f>
-  <g>{$this->server->url}/get/{$package['name']}-{$release['version']}</g>
+  <g>{$this->server->url}get/{$package['name']}-{$release['version']}</g>
   <x xlink:href="package.{$release['version']}.xml"/>
 </r>
 EOF
@@ -787,10 +787,10 @@ EOF;
   <servers>
     <primary>
       <rest>
-        <baseurl type="REST1.0">{$this->server->url}/rest/</baseurl>
-        <baseurl type="REST1.1">{$this->server->url}/rest/</baseurl>
-        <baseurl type="REST1.2">{$this->server->url}/rest/</baseurl>
-        <baseurl type="REST1.3">{$this->server->url}/rest/</baseurl>
+        <baseurl type="REST1.0">{$this->server->url}rest/</baseurl>
+        <baseurl type="REST1.1">{$this->server->url}rest/</baseurl>
+        <baseurl type="REST1.2">{$this->server->url}rest/</baseurl>
+        <baseurl type="REST1.3">{$this->server->url}rest/</baseurl>
       </rest>
     </primary>
   </servers>
