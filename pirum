@@ -257,6 +257,7 @@ class Pirum_Builder
         reset($release['maintainers']);
         $maintainer = current($release['maintainers']);
 
+        $description = htmlspecialchars($package['description']);
         $entries .= <<<EOF
   <entry>
     <title>{$package['name']} {$release['version']} ({$release['stability']})</title>
@@ -267,7 +268,7 @@ class Pirum_Builder
     </author>
     <updated>$date</updated>
     <content>
-      {htmlspecialchars($package['description'])}
+      {$description}
     </content>
   </entry>
 EOF;
